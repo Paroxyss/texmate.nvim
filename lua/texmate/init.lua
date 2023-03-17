@@ -2,11 +2,17 @@ local defaults = require("texmate.config")
 local snippets = require("texmate.snippets")
 local concat = require("texmate.utils.concat")
 
+local ok, luasnip = pcall(require, "luasnip")
+
 local M = {}
 
 M.setup = function(opts)
+	if not ok then
+		print("oula pas luasnip")
+		return
+	end
 	--Override defaults
-	vim.tbl_extend("keep", opts, defaults)
+	opts = vim.tbl_extend("keep", opts, defaults)
 
 	if (opts.cleanOnExit) then
 		vim.api.nvim_create_autocmd("VimLeavePre", {
@@ -17,12 +23,10 @@ M.setup = function(opts)
 
 	if (opts.loadSnippets) then
 		local toLoad = {}
-		for _, v in ipairs(snippets) do
+		for _, v in pairs(snippets) do
 			toLoad = concat(toLoad, v)
 		end
-		require("luasnip").add_snippets("snippets", {
-			tex = toLoad
-		})
+		luasnip.add_snippets(nil, { tex = toLoad })
 	end
 end
 
