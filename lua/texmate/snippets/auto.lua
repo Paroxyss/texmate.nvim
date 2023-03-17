@@ -12,7 +12,7 @@ local fmta = require("luasnip.extras.fmt").fmta
 
 local ctx = require("texmate.utils.latexContexts").ctx
 local getCustomEnv = require("texmate.utils.latexContexts").getCustomEnv
-local createAutoSnippet = require("texmate.utils.sippetsUtil").createAutoSnippet
+local createAutoSnippet = require("texmate.utils.snippetsUtils").createAutoSnippet
 
 return {
 	createAutoSnippet({

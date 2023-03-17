@@ -1,3 +1,4 @@
 return {
-	cleanOnExit = true
+	cleanOnExit = true,
+	loadSnippets = true,
 }

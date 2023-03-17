@@ -6,8 +6,7 @@ local M = {}
 
 M.setup = function(opts)
 	--Override defaults
-	for k, v in pairs(opts) do defaults[k] = v end
-	vim.tbl_extend("keep", { opts, defaults })
+	vim.tbl_extend("keep", opts, defaults)
 
 	if (opts.cleanOnExit) then
 		vim.api.nvim_create_autocmd("VimLeavePre", {
@@ -25,7 +24,6 @@ M.setup = function(opts)
 			tex = toLoad
 		})
 	end
-
 end
 
 
